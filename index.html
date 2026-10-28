@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wissam Haouchar — Frontend Developer building responsive web experiences with React, JavaScript, and modern web technologies." />
+  <title>Wissam Haouchar | Frontend Developer</title>
+  <style>
+    :root {
+      --bg: #0b1020; --panel: #111a2e; --panel2: #151f36; --text: #f4f7ff;
+      --muted: #a7b3ca; --accent: #7c9cff; --accent2: #5ce1c5;
+      --line: rgba(255,255,255,.11); --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: radial-gradient(ellipse at 80% 0%, #1a2b51 0, transparent 40%), var(--bg);
+      color: var(--text); font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent2); outline-offset: 4px; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: auto; }
+    header { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(18px); background: rgba(11,16,32,.82); border-bottom: 1px solid var(--line); }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; font-size: 1.1rem; }
+    .brand span { color: var(--accent2); }
+    .navlinks { display: flex; gap: 24px; color: var(--muted); font-size: .92rem; }
+    .navlinks a:hover, .textlink:hover { color: var(--accent2); }
+    .hero { padding: 104px 0 88px; display: grid; grid-template-columns: 1.5fr .8fr; gap: 64px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--accent2); text-transform: uppercase; letter-spacing: .16em; font-weight: 700; font-size: .75rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 18px var(--accent2); }
+    h1 { font-size: clamp(2.8rem, 6.5vw, 5.2rem); line-height: 1.03; letter-spacing: -.065em; margin: 22px 0; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .intro { color: var(--muted); max-width: 650px; font-size: 1.12rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 18px; border: 1px solid var(--line); border-radius: 12px; font-weight: 700; transition: transform .18s, border-color .18s, background .18s; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #0b1020; border-color: var(--accent); }
+    .hero-card { background: linear-gradient(145deg, rgba(124,156,255,.16), rgba(92,225,197,.06)); border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: 0 24px 80px rgba(0,0,0,.2); }
+    .monogram { width: 76px; height: 76px; display: grid; place-items: center; border-radius: 22px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #09101f; font-size: 1.8rem; font-weight: 900; letter-spacing: -.08em; }
+    .hero-card h2 { margin: 20px 0 4px; font-size: 1.25rem; }
+    .hero-card p { color: var(--muted); margin: 0; }
+    .quickfacts { display: grid; gap: 13px; margin-top: 24px; }
+    .fact { display: flex; justify-content: space-between; gap: 16px; padding-top: 13px; border-top: 1px solid var(--line); font-size: .9rem; }
+    .fact span:first-child { color: var(--muted); }
+    section { padding: 76px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+    .kicker { color: var(--accent2); font-size: .76rem; text-transform: uppercase; letter-spacing: .16em; font-weight: 800; }
+    h2.section-title { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -.05em; margin: 8px 0 0; }
+    .section-note { max-width: 430px; color: var(--muted); margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .card { background: rgba(17,26,46,.86); border: 1px solid var(--line); border-radius: 20px; padding: 25px; }
+    .card:hover { border-color: rgba(124,156,255,.6); }
+    .card-top { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
+    .project-num { color: var(--accent2); font-weight: 800; font-size: .8rem; letter-spacing: .1em; }
+    .card h3 { margin: 10px 0 8px; font-size: 1.25rem; letter-spacing: -.025em; }
+    .card p { color: var(--muted); margin: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag { border: 1px solid var(--line); background: rgba(255,255,255,.035); color: #d8e1f3; border-radius: 999px; padding: 5px 10px; font-size: .78rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill { padding: 10px 14px; border-radius: 10px; background: var(--panel2); border: 1px solid var(--line); color: #dce5f7; }
+    .experience { border-left: 1px solid rgba(124,156,255,.55); padding-left: 24px; display: grid; gap: 24px; }
+    .role { position: relative; }
+    .role::before { content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--accent2); left: -29px; top: 9px; }
+    .role-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+    .role h3 { margin: 0; font-size: 1.12rem; }
+    .date { color: var(--accent2); font-size: .88rem; }
+    .role p { margin: 7px 0 0; color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+    .about-copy { font-size: 1.08rem; color: var(--muted); }
+    .about-copy strong { color: var(--text); }
+    .contact-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 34px; border-radius: 24px; border: 1px solid var(--line); background: linear-gradient(130deg, rgba(124,156,255,.15), rgba(92,225,197,.07)); }
+    .contact-box h2 { margin: 6px 0; font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -.05em; }
+    .contact-box p { margin: 0; color: var(--muted); }
+    footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; padding: 72px 0 50px; gap: 32px; }
+      .hero-card { max-width: 520px; }
+      .grid, .about-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-note { margin-top: 14px; }
+      .navlinks { gap: 12px; font-size: .82rem; }
+      .brand { font-size: .98rem; }
+      .wrap { width: min(var(--max), calc(100% - 28px)); }
+      section { padding: 56px 0; }
+    }
+    @media (max-width: 420px) {
+      .navlinks a:nth-child(2) { display: none; }
+      .contact-box { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">WISSAM<span>.</span></a>
+      <div class="navlinks">
+        <a href="#work">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Frontend Developer · Lebanon</div>
+        <h1>Building useful things for the <em>web.</em></h1>
+        <p class="intro">I'm Wissam Haouchar, a Computer Science graduate and frontend developer focused on responsive interfaces, reusable components, and practical web experiences with React and JavaScript.</p>
+        <div class="actions">
+          <a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+          <a class="btn" href="mailto:wissamhaouchar1@gmail.com">Email me</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="monogram" aria-label="W H initials">WH</div>
+        <h2>Wissam Haouchar</h2>
+        <p>Frontend Developer · React.js & JavaScript</p>
+        <div class="quickfacts">
+          <div class="fact"><span>Based in</span><strong>Tripoli, Lebanon</strong></div>
+          <div class="fact"><span>Education</span><strong>BSc Computer Science</strong></div>
+          <div class="fact"><span>Languages</span><strong>Arabic · English · French</strong></div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="kicker">Selected work</div><h2 class="section-title">Projects & experiments</h2></div>
+          <p class="section-note">A selection of web development and applied AI work. Ask me for a walkthrough or source code for a specific project.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="card-top"><span class="project-num">01 / WEB</span><span aria-hidden="true">↗</span></div>
+            <h3>Company Website — Beyroute Concierge</h3>
+            <p>Built and maintain a company website, focusing on responsive layouts, reusable UI components, API integration, cross-browser behavior, and ongoing improvements.</p>
+            <div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">Responsive UI</span><span class="tag">REST APIs</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="project-num">02 / AI</span><span aria-hidden="true">✳</span></div>
+            <h3>Retrieval-Augmented Generation (RAG)</h3>
+            <p>An applied AI project exploring document retrieval and response generation using embeddings and a vector database.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Embeddings</span><span class="tag">Vector Database</span><span class="tag">Generative AI</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="project-num">03 / DATA</span><span aria-hidden="true">⌁</span></div>
+            <h3>Sports Sentiment Analyzer</h3>
+            <p>A Python and Streamlit project designed to explore sentiment in sports-related text and present results through an interactive interface.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Data Analysis</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="project-num">04 / FULL STACK</span><span aria-hidden="true">⌘</span></div>
+            <h3>Full-Stack Web Applications</h3>
+            <p>Web application projects using frontend interfaces, server-side logic, and database integration to practice end-to-end development.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Bootstrap</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="project-num">05 / SYSTEM DESIGN</span><span aria-hidden="true">◇</span></div>
+            <h3>University Event & Club Management</h3>
+            <p>A university system design project covering requirements and modeling, including ER diagrams, data-flow diagrams, use cases, and UI planning.</p>
+            <div class="tags"><span class="tag">ERD</span><span class="tag">DFD</span><span class="tag">Use Cases</span><span class="tag">UI Design</span></div>
+          </article>
+          <article class="card">
+            <div class="card-top"><span class="project-num">06 / PRACTICE</span><span aria-hidden="true">+</span></div>
+            <h3>API-Driven Interfaces</h3>
+            <p>Experience integrating REST APIs into frontend applications and improving loading behavior, usability, and maintainability.</p>
+            <div class="tags"><span class="tag">REST APIs</span><span class="tag">JavaScript</span><span class="tag">Git</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="kicker">Background</div><h2 class="section-title">Experience</h2></div>
+          <p class="section-note">Practical experience building, maintaining, and improving software.</p>
+        </div>
+        <div class="experience">
+          <article class="role">
+            <div class="role-head"><h3>Frontend Developer · Beyroute Concierge</h3><span class="date">2025 – Present</span></div>
+            <p>Built the company website from scratch and continue to maintain it. Work includes responsive pages, reusable components, REST API integration, UI improvements, bug fixes, and collaboration through Git/GitHub.</p>
+          </article>
+          <article class="role">
+            <div class="role-head"><h3>Software Development Intern · TechTalks</h3><span class="date">2026</span></div>
+            <p>Developed familiarity with modern web development, scalable architecture, API-driven system design, and collaborative software practices.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="kicker">A little about me</div><h2 class="section-title">Curious by nature.<br>Practical by design.</h2></div>
+        </div>
+        <div class="about-grid">
+          <div class="card about-copy">
+            <p>I'm a <strong>Computer Science graduate from Lebanese International University</strong> (August 2026). I enjoy turning ideas into clear, responsive interfaces and solving problems across the frontend and backend.</p>
+            <p>Alongside web development, I've explored Python, data analysis, and applied AI. I'm always looking to learn, collaborate, and contribute to products that are useful to real people.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Technical toolkit</h3>
+            <div class="skills">
+              <span class="skill">React.js</span><span class="skill">JavaScript</span><span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">Bootstrap</span><span class="skill">Node.js</span><span class="skill">REST APIs</span><span class="skill">MongoDB</span><span class="skill">MySQL</span><span class="skill">Python</span><span class="skill">Streamlit</span><span class="skill">Power BI</span><span class="skill">Generative AI</span><span class="skill">Git & GitHub</span><span class="skill">AWS fundamentals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-box">
+          <div><div class="kicker">Get in touch</div><h2>Let's build something useful.</h2><p>Open to frontend, junior full-stack, and technology-focused opportunities.</p></div>
+          <div class="actions">
+            <a class="btn primary" href="mailto:wissamhaouchar1@gmail.com">wissamhaouchar1@gmail.com</a>
+            <a class="btn" href="https://github.com/wissamhaouchar" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a class="btn" href="https://www.linkedin.com/in/wissam-haouchar-3457bb305/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span>© <span id="year"></span> Wissam Haouchar</span><span>Designed and built with HTML & CSS.</span></div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
